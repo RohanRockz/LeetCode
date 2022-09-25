@@ -13,5 +13,5 @@ public:
             }
         }
         return c>=n;//learnt this way of returning first time in this code.
-    }
+    }//learnt how to imply boundary conditions in an effective way inside the loop.
 };
