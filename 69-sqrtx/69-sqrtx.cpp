@@ -1,3 +1,4 @@
+//Square Root Finder using Binary Search Technique in O(nlogn) time.
 class Solution {
 public:
     int mySqrt(int x) {
