@@ -1,3 +1,4 @@
+//First program of string...learnt syntax use of array of strings
 class Solution {
 public:
     string longestCommonPrefix(vector<string>& strs) {
