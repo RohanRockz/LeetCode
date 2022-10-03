@@ -8,6 +8,7 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+//Solved using basic operations of linked list considering two pointers approach in a different way.
 class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
