@@ -1,3 +1,4 @@
+//This program was done taking help from the discussions for doing it without Bit operations so that it could be solved by iterative method.
 class Solution {
 public:
     vector<vector<int>> subsets(vector<int>& nums) {
