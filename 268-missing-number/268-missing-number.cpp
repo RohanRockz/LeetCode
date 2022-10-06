@@ -1,3 +1,4 @@
+//BIT Manipulation will require less time hence the code should be solved with BIT Manipulation.
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {
