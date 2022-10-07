@@ -8,6 +8,7 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+//This code is slow because of the use of two pointer approach.Lets try with different method as well.
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
