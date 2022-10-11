@@ -8,9 +8,10 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+//This problem can be solved using stack which will require less space and time.
 class Solution {
 public:
-    vector<int>answer;
+    vector<int>answer;//global array
     vector<int> nextLargerNodes(ListNode* head) {
         ListNode* temp=head;
         while(head){
