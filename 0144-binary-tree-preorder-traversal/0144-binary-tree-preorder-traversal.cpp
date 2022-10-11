@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    vector<int>a;
+    vector<int>a;//global array
     vector<int> preorderTraversal(TreeNode* root) {
         create(root);
         return a;
@@ -21,7 +21,7 @@ public:
             return;
         }
         a.push_back(root->val);
-        preorderTraversal(root->left);
-        preorderTraversal(root->right);
+        create(root->left);
+        create(root->right);
     }
 };
