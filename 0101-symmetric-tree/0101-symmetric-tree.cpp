@@ -14,7 +14,7 @@ public:
     bool isSymmetric(TreeNode* root) {
         if(!root)
             return false;
-        return(counter(root->left,root->right));
+        return counter(root->left,root->right);
     }
     bool counter(TreeNode* l,TreeNode* r){
         if(!l&&!r){
@@ -23,6 +23,6 @@ public:
         if(!l || !r){
             return false;
         }
-        return(l->val==r->val)&&counter(l->left,r->right)&&counter(l->right,r->left);
+        return(l->val==r->val)&& counter(l->left,r->right)&& counter(l->right,r->left);
     }
 };
