@@ -23,6 +23,6 @@ public:
         if(!l || !r){
             return false;
         }
-        return(l->val==r->val)&&(counter(l->left,r->right))&&counter(l->right,r->left);
+        return(l->val==r->val)&&counter(l->left,r->right)&&counter(l->right,r->left);
     }
 };
