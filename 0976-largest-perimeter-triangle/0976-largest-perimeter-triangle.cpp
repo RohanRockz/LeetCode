@@ -1,3 +1,4 @@
+//nice idea to sort the array and compare.
 class Solution {
 public:
     int largestPerimeter(vector<int>& nums) {
