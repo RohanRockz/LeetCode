@@ -6,6 +6,7 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+//Just change the value and pointer to the next node
 class Solution {
 public:
     void deleteNode(ListNode* node) {
