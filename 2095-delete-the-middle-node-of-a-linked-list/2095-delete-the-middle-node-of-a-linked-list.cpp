@@ -8,22 +8,24 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-//an efficient solution learnt from discussion without using third pointer.
 class Solution {
 public:
-    ListNode* deleteMiddle(ListNode* head) {
-       ListNode* slow = head;
-        ListNode* fast = slow->next;
-        
-        if(fast==nullptr)
-            return nullptr;
-        
-        while(fast->next!=nullptr && fast->next->next!=nullptr){
-            slow = slow->next;
-            fast = fast->next->next;
+    ListNode* deleteMiddle(ListNode* head) 
+    {
+        if(!head)
+            return NULL;
+        if(!head->next)
+        {
+            delete(head);
+            return NULL;
         }
-        slow->next = slow->next->next;
-        
+        ListNode* slow=head->next, *fast=head->next;
+        while(fast->next && fast->next->next)
+            slow=slow->next,fast=fast->next->next;
+        if(!slow->next)
+            delete(slow),head->next=NULL;
+        else
+            *slow=*slow->next;
         return head;
     }
 };
