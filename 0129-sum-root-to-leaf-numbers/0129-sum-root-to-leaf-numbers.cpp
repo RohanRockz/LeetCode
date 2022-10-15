@@ -9,6 +9,7 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+//Solved using Depth-First Search 
 class Solution {
 public:
     int sumNumbers(TreeNode* root) {
