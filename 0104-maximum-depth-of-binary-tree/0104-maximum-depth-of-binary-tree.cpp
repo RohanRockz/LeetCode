@@ -9,6 +9,7 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+//Depth of Tree=root to node path.
 class Solution {
 public:
     int maxDepth(TreeNode* root) {
