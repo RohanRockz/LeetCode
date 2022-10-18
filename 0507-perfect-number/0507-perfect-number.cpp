@@ -1,4 +1,4 @@
-//Optimal Solution with root(n) complexity.Better Solution exist using Euclid-Euler theorem which is done next.
+//Optimal Solution with root(n) complexity.
 class Solution {
 public:
     bool checkPerfectNumber(int num) {
