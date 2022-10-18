@@ -1,3 +1,4 @@
+//Basic way to solve the problem.The best way is to use BIT operator which is solved next.
 class Solution {
 public:
     vector<int> singleNumber(vector<int>& nums) {
