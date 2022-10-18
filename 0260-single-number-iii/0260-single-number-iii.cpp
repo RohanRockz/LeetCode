@@ -1,23 +1,18 @@
-//Basic way to solve the problem.The best way is to use BIT operator which is solved next.
+//Best Way to solve the problem using XOR operator.
 class Solution {
 public:
-    vector<int> singleNumber(vector<int>& nums) {
-        sort(nums.begin(),nums.end());
-        unordered_map<int,int>a;
-        for(int i=0;i<nums.size();i++){
-            a[nums[i]]++;
-        }
-        vector<int>s;
-        for(auto &[x,f]:a){
-            if(f==1){
-                s.push_back(x);
-            }
-        }
-        if(s.size()==2){
-            return s;
-        }
-        return s;
-        
+   
+        vector<int> singleNumber(vector<int> &nums) {
+	int firstXorSec = 0, mask = 1, first = 0;
+	// get xor of first and sec
+	for (auto &num: nums) firstXorSec ^= num;
+	// get rightmost set bit in above xor
+	while (not (firstXorSec & mask)) mask <<= 1;
+	// get first distinct number
+	for (auto &num: nums)
+		if (num & mask) first ^= num;
+	// return ans
+	return {first, firstXorSec ^ first};
             }
         
     
