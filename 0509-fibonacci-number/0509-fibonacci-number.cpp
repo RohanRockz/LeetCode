@@ -1,12 +1,18 @@
+//An application ot this is the Climbing Stairs problem.
 class Solution {
 public:
     int fib(int n) {
-        if(n==0){
-            return 0;
+        int p1=0,p2=1;
+        int f=0;
+        if(n<2){
+            return n;
         }
-        if((n==2)||(n==1)){
-            return 1;
+        for(int i=1;i<n;i++){
+            f=p1+p2;
+            p1=p2;
+            p2=f;
+            
         }
-        return fib(n-1)+fib(n-2);
+        return f;
     }
 };
