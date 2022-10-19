@@ -1,4 +1,4 @@
-//An application ot this is the Climbing Stairs problem.
+//An application ot this is the Climbing Stairs problem.Better time complexity then recursive.
 class Solution {
 public:
     int fib(int n) {
