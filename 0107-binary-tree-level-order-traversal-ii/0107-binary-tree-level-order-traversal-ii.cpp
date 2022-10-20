@@ -9,37 +9,31 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-//My method was to just imply the same level order traversal and then just reverse the array.But the optimal solution could be better which will be done next.
+//The better way to solve the problem with minimum runtime complexity is to calculate depth of the tree and then implement depth in the traversal.This is the best optimal solution.
 class Solution {
 public:
-    vector<vector<int>>a;
-    vector<vector<int>> levelOrderBottom(TreeNode* root) {
-        Level(root);
-        reverse(a.begin(),a.end());
-        return a;
-    }
-    void Level(TreeNode* root){
+    int depth(TreeNode* root){
         if(root==NULL){
+            return 0;
+        }
+        else
+            return 1+max(depth(root->right),depth(root->left));
+    }
+    void Level(vector<vector<int>>&a,TreeNode* root,int level){
+        if(!root){
             return;
         }
-        queue<TreeNode*>q;
-        q.push(root);
-        while(q.empty()==false){
-            int count=q.size();
-            vector<int>temp;
-            for(int i=0;i<count;i++){
-                TreeNode* curr=q.front();
-                temp.push_back(curr->val);
-                q.pop();
-                if(curr->left!=NULL){
-                    q.push(curr->left);
-                    
-                }
-                if(curr->right!=NULL){
-                    q.push(curr->right);
-                }
-            }
-            a.push_back(temp);
-        }
+        a[level].push_back(root->val);
+        Level(a,root->left,level-1);
+        Level(a,root->right,level-1);
     }
+    
+   
+    vector<vector<int>> levelOrderBottom(TreeNode* root) {
+        int d=depth(root);
+        vector<vector<int>>a(d,vector<int>{});
+        Level(a,root,d-1);
+        return a;
+    }
+    
 };
