@@ -9,6 +9,7 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+//An Application of Level Order Traversal.
 class Solution {
 public:
     vector<double>avg;
