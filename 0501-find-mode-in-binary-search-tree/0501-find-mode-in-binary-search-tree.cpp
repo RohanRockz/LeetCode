@@ -9,32 +9,42 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-class Solution {
+//An optimal solution to this problem can be achieved with the help of a new pointer as discussed below :
+class Solution
+{
 public:
-    unordered_map<int,int>a;
-    int m=0;
-    vector<int> findMode(TreeNode* root) {
-        vector<int>final;
-        mode(root);
-        for(auto &x:a){
-            if(x.second>=m){
-                final.push_back(x.first);
-            }
-        }
-        return final;
-
-    }
-    void mode(TreeNode* root){
-        if(root==NULL){
+    TreeNode *prev;
+    int count = 0;
+    int max_count = 0;
+    vector<int> final;
+    void mode(TreeNode *root)
+    {
+        if (root == NULL)
             return;
-        }
-        if(a[root->val]==0){
-            a[root->val]=1;
-        }
-        else
-            a[root->val]++;
-        m=max(m,a[root->val]);
-        mode(root->right);
         mode(root->left);
+        if (prev == NULL)
+            count = 1;
+        else if (root->val == prev->val)
+            count++;
+        else
+            count = 1;
+
+        if (count == max_count)
+            final.push_back(root->val);
+        else if (count > max_count)
+        {
+            max_count = count;
+            final.clear();//inbuilt function which is used to clear the array elements
+            final.push_back(root->val);
+        }
+
+        prev = root;
+        mode(root->right);
+    }
+    vector<int> findMode(TreeNode *root)
+    {
+        final.clear();
+        mode(root);
+        return final;
     }
 };
