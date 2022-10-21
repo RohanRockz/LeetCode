@@ -1,17 +1,13 @@
+//Using set the problem can be solved as follows:
 class Solution {
 public:
     bool containsDuplicate(vector<int>& nums) {
-        unordered_map<int,int>a;
+        unordered_set<int>a;
         for(int i=0;i<nums.size();i++){
-            if(a[nums[i]]==0){
-                a[nums[i]]=1;
+            if(a.count(nums[i])){
+                return true;
             }
-            else{
-                a[nums[i]]++;
-                if(a[nums[i]]>=2){
-                    return true;
-                }
-            }
+            a.insert(nums[i]);
         }
         return false;
     }
