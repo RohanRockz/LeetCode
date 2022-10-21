@@ -9,7 +9,7 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-//An optimal solution to this problem can be achieved with the help of a new pointer as discussed below :
+//An optimal solution to this problem can be achieved with the help of a new pointer as discussed below using clear() function.
 class Solution
 {
 public:
