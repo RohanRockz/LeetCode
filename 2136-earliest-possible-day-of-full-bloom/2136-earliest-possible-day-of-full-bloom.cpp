@@ -1,3 +1,4 @@
+//Pair used.The growtime is stored in deacreasing order hence is stored as negative.
 class Solution {
 public:
     int earliestFullBloom(vector<int>& plantTime, vector<int>& growTime) {
