@@ -9,6 +9,7 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+//An implementation of simple recursion and max function.
 class Solution {
 public:
     int sum=INT_MIN;
