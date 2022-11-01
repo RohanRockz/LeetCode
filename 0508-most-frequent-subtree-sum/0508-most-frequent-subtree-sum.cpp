@@ -9,6 +9,7 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+//Use of preorder traversal and hashset using unordered map.
 class Solution {
 public:
     int calc_sum(TreeNode* root){
