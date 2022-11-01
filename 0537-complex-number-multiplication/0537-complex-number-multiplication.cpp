@@ -4,7 +4,7 @@ public:
     pair<int,int>parts(string s){
         int i=s.find('+');
         double real=stoi(s.substr(0,i));
-        double imag=stoi(s.substr(i+1,s.size()-2-i));
+        double imag=stoi(s.substr(i+1,s.size()-2));
         pair<int,int>result(real,imag);
         return result;
     }
