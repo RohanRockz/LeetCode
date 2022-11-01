@@ -12,28 +12,24 @@
 //Use of preorder traversal and hashset using unordered map.
 class Solution {
 public:
-    int calc_sum(TreeNode* root){
-        if(!root){
+    int calc_sum(TreeNode* root,unordered_map<int,int>&count,int &maxf){
+        if(root==NULL){
             return 0;
         }
-        return root->val+calc_sum(root->right)+calc_sum(root->left);
-    }
-    void preOrder(TreeNode* root,unordered_map<int,int>&sum,int &maxf){
-        if(!root){
-            return;
+        int sum=root->val;
+        sum+=calc_sum(root->left,count,maxf);
+        sum+=calc_sum(root->right,count,maxf);
+        count[sum]++;
+        maxf=max(maxf,count[sum]);
+        return sum;
         }
-        int total=calc_sum(root);
-        sum[total]++;
-        maxf=max(maxf,sum[total]);
-        preOrder(root->left,sum,maxf);
-        preOrder(root->right,sum,maxf);
-    }
+    
     vector<int> findFrequentTreeSum(TreeNode* root) {
-        unordered_map<int,int>sum;
+        unordered_map<int,int>count;
         int maxf=0;
-        preOrder(root,sum,maxf);
+        calc_sum(root,count,maxf);
         vector<int>result;
-        for(auto& i:sum){
+        for(auto& i:count){
             if(i.second==maxf){
                 result.push_back(i.first);
             }
