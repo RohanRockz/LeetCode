@@ -1,3 +1,4 @@
+//four variables four ways of traversing the matrix.
 class Solution {
 public:
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
