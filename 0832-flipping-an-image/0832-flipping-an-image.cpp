@@ -1,3 +1,4 @@
+//Use of Bitwise operator which gives 1 for same values and 0 for different values.
 class Solution {
 public:
     vector<vector<int>> flipAndInvertImage(vector<vector<int>>& image) {
