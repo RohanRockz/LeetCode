@@ -5,7 +5,7 @@ public:
         sort(satisfaction.begin(),satisfaction.end());
         int n = satisfaction.size();
         
-        int Cumulative_sum = 0; // From back
+        int Cumulative_sum = 0; 
         
         int ans = 0;
         int cur = 0;
