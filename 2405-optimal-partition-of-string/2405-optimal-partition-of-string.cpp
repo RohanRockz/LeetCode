@@ -1,19 +1,23 @@
 //Use of set to check for the duplicating characters
 class Solution {
 public:
-    int partitionString(string s) {
-        int res=1;
-        vector<int> a(26, 0);
-        for(int i=0;i<s.size();i++){
-            if(!a[s[i] - 'a']){
-                a[s[i] - 'a']++;
+    int partitionString(string s) 
+    {
+     vector<int> a (26, -1);
+        int k = 1;
+        int start = 0, end = 0;
+
+        for(char c : s)
+        {
+            if(a[c-'a'] >= start)
+            {
+                k++;
+                start = end;
             }
-            else{
-                res++;
-                a = vector<int> (26, 0);//function used to clear the set 
-                a[s[i] - 'a']++;
-            }
+            a[c-'a'] = end;
+            end++;
         }
-        return res;
+        
+        return k;
     }
 };
