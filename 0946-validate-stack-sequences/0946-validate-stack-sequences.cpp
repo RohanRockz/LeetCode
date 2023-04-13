@@ -1,3 +1,4 @@
+//push and pop
 class Solution {
 public:
     bool validateStackSequences(vector<int>& pushed, vector<int>& popped) {
