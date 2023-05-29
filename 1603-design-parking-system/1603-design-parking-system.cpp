@@ -1,48 +1,24 @@
 class ParkingSystem {
 public:
-    int bigLimit, mediumLimit,smallLimit;
-    int* parkingArray;
-    ParkingSystem(int big, int medium, int small) {
-        this->bigLimit=big;
-        this->mediumLimit=medium;
-        this->smallLimit=small;
-        
-        this->parkingArray=(int*)malloc((big+small+medium) * sizeof(int));
-        for(int i=0;i<big+medium+small;i++){
-            this->parkingArray[i]=-1;
-        }
+    int b, m ,s;
+    ParkingSystem(int big, int mid, int small) {
+        b = big;
+        m = mid;
+        s= small;
     }
     
     bool addCar(int carType) {
-        int limit=0;
-        if(carType==1){
-            limit=this->bigLimit;
+        if(carType == 1) {
+            if(b == 0) return false;
+            b--;
+            
+        } else if(carType == 2) {
+            if(m == 0) return false;
+            m--;
+        } else {
+            if(s == 0) return false;
+            s--;
         }
-        else if(carType==2){
-            limit=this->mediumLimit;
-        }
-        else{
-            limit=this->smallLimit;
-        }
-        int count=0;
-        for(int i=0;i<this->bigLimit+this->mediumLimit+this->smallLimit;i++){
-            if(this->parkingArray[i]==carType){
-                count++;
-            }
-            if(count==limit){
-                return false;
-            }
-            if(this->parkingArray[i]==-1){
-                this->parkingArray[i]=carType;
-                return true;
-            }
-        }
-        return false;
+        return true;
     }
 };
-
-/**
- * Your ParkingSystem object will be instantiated and called as such:
- * ParkingSystem* obj = new ParkingSystem(big, medium, small);
- * bool param_1 = obj->addCar(carType);
- */
