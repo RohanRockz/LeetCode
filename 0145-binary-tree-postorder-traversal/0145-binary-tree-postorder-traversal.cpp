@@ -4,27 +4,28 @@
  *     int val;
  *     TreeNode *left;
  *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
 class Solution {
 public:
-    vector<int>a;
-    vector<int> postorderTraversal(TreeNode* root) {
-        if(root==NULL){
-            return {};
-        }
-        traverse(root);
-        return a;
-    }
-    void traverse(TreeNode* root){
-        if(!root){
+    void postorderTraversalHelper(TreeNode* currentNode, vector<int>& result) {
+        // Base case: if the node is null, return
+        if (!currentNode) {
             return;
         }
-        traverse(root->left);
-        traverse(root->right);
-        a.push_back(root->val);
+        // Traverse left subtree
+        postorderTraversalHelper(currentNode->left, result);
+        // Traverse right subtree
+        postorderTraversalHelper(currentNode->right, result);
+        // Add the current node's value to the result list
+        result.push_back(currentNode->val);
+    }
+
+    vector<int> postorderTraversal(TreeNode* root) {
+        vector<int> result;
+        // Start traversal from root
+        postorderTraversalHelper(root, result);
+        return result;
     }
 };
