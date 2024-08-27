@@ -1,27 +1,28 @@
 class Solution {
 public:
-    double maxProbability(int n, vector<vector<int>>& edges, vector<double>& succProb, int start, int end) {
-        vector<double> pro(n + 1, 0);
-        
-        vector<pair<int,double>> adj[n + 1];
-        for (int i = 0; i < edges.size(); i++) {
-            adj[edges[i][0]].push_back({edges[i][1],succProb[i]});
-            adj[edges[i][1]].push_back({edges[i][0],succProb[i]});
-        }
-        priority_queue<pair<double,int>> pq;
-        pro[start] = 1;
-        pq.push({1, start});
-        while (!pq.empty()) {
-            int node = pq.top().second;
-            double p = pq.top().first;
-            pq.pop();
-            for (auto it : adj[node]) {
-                if (pro[it.first] < (it.second * pro[node])) {
-                    pro[it.first] = (it.second * pro[node]);
-                    pq.push({pro[it.first], it.first});
+    double maxProbability(int n, vector<vector<int>>& edges, vector<double>& succProb, int start_node, int end_node) {
+        vector<double> maxProb(n, 0.0);
+        maxProb[start_node] = 1.0;
+
+        for (int i = 0; i < n - 1; ++i) {
+            bool updated = false;
+            for (int j = 0; j < edges.size(); ++j) {
+                int u = edges[j][0];
+                int v = edges[j][1];
+                double prob = succProb[j];
+
+                if (maxProb[u] * prob > maxProb[v]) {
+                    maxProb[v] = maxProb[u] * prob;
+                    updated = true;
+                }
+                if (maxProb[v] * prob > maxProb[u]) {
+                    maxProb[u] = maxProb[v] * prob;
+                    updated = true;
                 }
             }
+            if (!updated) break;
         }
-        return pro[end];
+
+        return maxProb[end_node];
     }
 };
