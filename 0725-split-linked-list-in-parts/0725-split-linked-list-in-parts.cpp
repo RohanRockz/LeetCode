@@ -10,47 +10,37 @@
  */
 class Solution {
 public:
-    vector<ListNode*> splitListToParts(ListNode* root, int k) {
-        //first calculate the length
-        int len=0;
-        ListNode* temp=root;
-        while(temp)
-        {
-            len++;
-            temp=temp->next;
+    vector<ListNode*> splitListToParts(ListNode* head, int k) {
+        vector<ListNode*> ans(k);
+
+        int size = 0;
+        ListNode* current = head;
+        while (current != nullptr) {
+            size++;
+            current = current->next;
         }
-        
-        int numNodes=len/k; //the number of nodes that are to be in each group
-        int extra=len%k;  //the extra nodes that are left
-        int i=0;
-        vector<ListNode*> res;
-        temp=root;
-        while(temp)
-        {
-            res.push_back(temp);
-            //get the numNodes and make the last node next to NULL
-            int currLen=1;
-            while(currLen<numNodes)
-            {
-                temp=temp->next;
-                currLen++;
+
+        int splitSize = size / k;
+        int numRemainingParts = size % k;
+
+        current = head;
+        for (int i = 0; i < k; i++) {
+            ListNode newPart(0);
+            ListNode* tail = &newPart;
+
+            int currentSize = splitSize;
+            if (numRemainingParts > 0) {
+                numRemainingParts--;
+                currentSize++;
             }
-            if(extra>0 && len>k)
-            {
-                temp=temp->next;
-                extra--;
+            for (int j = 0; j < currentSize; j++) {
+                tail->next = new ListNode(current->val);
+                tail = tail->next;
+                current = current->next;
             }
-            ListNode* x=temp->next;
-            temp->next=NULL;
-            temp=x;
+            ans[i] = newPart.next;
         }
-        //if the number of nodes are less than k we add NULL
-        while(len<k)
-        {
-            res.push_back(NULL);
-            len++;
-        }
-        return res;
-        
+
+        return ans;
     }
 };
