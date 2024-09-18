@@ -1,13 +1,25 @@
 class Solution {
 public:
-    string largestNumber(vector<int>& nums) {
-        sort(nums.begin(),nums.end(),[](int a,int b){
-            return to_string(a)+to_string(b)>to_string(b)+to_string(a);
-        });
-        string ans;
-        for(int i=0;i<nums.size();i++){
-            ans+=to_string(nums[i]);
+    string largestNumber(vector<int> &nums) {
+        vector<string> numStrings;
+        // Convert each integer to a string
+        for (int num : nums) {
+            numStrings.push_back(to_string(num));
         }
-        return ans[0]=='0'?"0":ans;
+
+        // Sort strings based on concatenated values
+        sort(numStrings.begin(), numStrings.end(),
+             [](string &a, string &b) { return a + b > b + a; });
+
+        // Handle the case where the largest number is zero
+        if (numStrings[0] == "0") return "0";
+
+        // Concatenate sorted strings to form the largest number
+        string largestNum;
+        for (string &numStr : numStrings) {
+            largestNum += numStr;
+        }
+
+        return largestNum;
     }
 };
