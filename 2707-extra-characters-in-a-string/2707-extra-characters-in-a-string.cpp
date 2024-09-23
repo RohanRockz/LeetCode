@@ -1,47 +1,30 @@
 class Solution {
-    unordered_map<char, vector<string>> mp;
-    unordered_map<string, int> dp;
-    
-    bool match(string a, string b)
-    {
-        for(int i = 0; i < b.size(); i++)
-        {
-            if(a[i] != b[i])
-                return false;
-        }
-        return true;
-    }
-    
-    int f(string s)
-    {
-        if(s.size() == 0)
-            return dp[s] = 0;
-        
-        if(dp.find(s) != dp.end())
-            return dp[s];
-        
-        int n = INT_MAX;
-        int a = s.size();
-        
-        for(int i = 0; i < mp[s[0]].size(); i++)
-        {
-            int b = mp[s[0]][i].size();
-            
-            if(a < b)
-                continue;
-            
-            if(match(s, mp[s[0]][i]))
-                n = min(n, f(s.substr(b)));
-        }
-        
-        return dp[s] = min(n, 1 + f(s.substr(1)));
-    }
 public:
-    int minExtraChar(string s, vector<string>& dictionary) 
-    {
-        for(auto &c : dictionary)
-            mp[c[0]].push_back(c);
-        
-        return f(s);
+    int minExtraChar(string s, vector<string> dictionary) {
+        int n = s.length();
+        unordered_set<string> dictionarySet(dictionary.begin(), dictionary.end());
+        unordered_map<int, int> memo;
+
+        function<int(int)> dp = [&](int start) {
+            if (start == n) {
+                return 0;
+            }
+            if (memo.count(start)) {
+                return memo[start];
+            }
+            // To count this character as a left over character 
+            // move to index 'start + 1'
+            int ans = dp(start + 1) + 1;
+            for (int end = start; end < n; end++) {
+                auto curr = s.substr(start, end - start + 1);
+                if (dictionarySet.count(curr)) {
+                    ans = min(ans, dp(end + 1));
+                }
+            }
+
+            return memo[start] = ans;
+        };
+
+        return dp(0);
     }
 };
