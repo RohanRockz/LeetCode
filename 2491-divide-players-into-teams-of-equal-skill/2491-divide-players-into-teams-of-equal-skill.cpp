@@ -1,20 +1,27 @@
 class Solution {
 public:
     long long dividePlayers(vector<int>& skill) {
-        sort(skill.begin(),skill.end());
-        int i=0;
-        int j=skill.size()-1;
-        long long sum=skill[i]+skill[j];
-        long long product=0;
-        while(i<=j){
-            long long curr=skill[i]+skill[j];
-            if(curr!=sum){
+        sort(skill.begin(), skill.end());
+
+        int n = skill.size();
+        long long totalChemistry = 0;
+
+        // Calculate the target sum
+        int targetTeamSkill = skill[0] + skill[n - 1];
+
+        // Iterate through half of the array, pairing players from both ends
+        for (int i = 0; i < n / 2; i++) {
+            int currentTeamSkill = skill[i] + skill[n - i - 1];
+
+            // If any team's skill doesn't match the target, return -1
+            if (currentTeamSkill != targetTeamSkill) {
                 return -1;
             }
-            product+=(skill[i]*skill[j]);
-            i++;
-            j--;
+
+            // Calculate and add the chemistry of the current team
+            totalChemistry += (long long)skill[i] * (long long)skill[n - i - 1];
         }
-        return product;
+
+        return totalChemistry;
     }
 };
