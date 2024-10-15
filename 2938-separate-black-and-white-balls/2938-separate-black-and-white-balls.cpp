@@ -1,17 +1,22 @@
 class Solution {
 public:
     long long minimumSteps(string s) {
-        int n=s.size();
-        long long res=0;
-        int count=0;
-        for(int i=0;i<n;i++){
-            if(s[i]=='1'){
-                count++;
-            }
-            else{
-                res+=count;
+        int whitePosition = 0;
+        long long totalSwaps = 0;
+
+        // Iterate through each ball (character) in the string
+        for (int currentPos = 0; currentPos < s.length(); currentPos++) {
+            if (s[currentPos] == '0') {
+                // Calculate the number of swaps needed
+                // to move it to the leftmost available position
+                totalSwaps += currentPos - whitePosition;
+
+                // Move the next available position for a white ball one step to
+                // the right
+                whitePosition++;
             }
         }
-        return res;
+
+        return totalSwaps;
     }
 };
